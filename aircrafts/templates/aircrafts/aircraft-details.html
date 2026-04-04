@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ aircraft.name }} - SkyArchive{% endblock %}
+
+{% block content %}
+    <div class="card card-custom p-4">
+        <div class="row g-4">
+            <div class="col-md-5">
+                <img src="{{ aircraft.image_url }}" alt="{{ aircraft.name }}" class="img-fluid rounded">
+            </div>
+            <div class="col-md-7">
+                <h1 class="mb-3">{{ aircraft.name }}</h1>
+                <p><strong>Role:</strong> {{ aircraft.role }}</p>
+                <p><strong>First Flight Year:</strong> {{ aircraft.first_flight_year }}</p>
+                <p><strong>Max Speed:</strong> {{ aircraft.max_speed_kmh }} km/h</p>
+                <p><strong>Crew: </strong>{{ aircraft.crew }}</p>
+                <strong>Status:</strong>
+                {% if aircraft.is_active_service %}
+                    Active service
+                {% else %}
+                    Retired
+                {% endif %}
+                <p><strong>Description:</strong> {{ aircraft.description }}</p>
+                <p><strong>Manufacturers:</strong>
+                    {% for manufacturer in aircraft.manufacturers.all %}
+                        {{ manufacturer }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p><strong>Origin Countries:</strong>
+                    {% for country in aircraft.origin_countries.all %}
+                        {{ country }}{% if not forloop.last %}, {% endif %}
+                    {% endfor %}
+                </p>
+                <p><strong>Features:</strong>
+                    {% for feature in aircraft.features.all %}
+                        <span class="badge badge-feature">{{ feature.name }}</span>
+                    {% empty %}
+                        No special features listed.
+                    {% endfor %}
+                </p>
+                <div class="mt-4 d-flex gap-2">
+                    <a href="{% url 'aircraft_edit' pk=aircraft.pk %}" class="btn btn-warning">Edit</a>
+                    <a href="{% url 'aircraft_delete' pk=aircraft.pk %}" class="btn btn-danger">Delete</a>
+                    <a href="{% url 'aircraft_list' %}" class="btn btn-outline-light">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

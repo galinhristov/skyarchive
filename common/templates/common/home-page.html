@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Home - SkyArchive{% endblock %}
+
+{% block content %}
+    <section class="text-center py-5">
+        <h1 class="display-4 fw-bold mb-3">Welcome to SkyArchive</h1>
+        <p class="lead mb-4">
+            Discover aircraft variants, manufacturers, countries of origin, and operational roles.
+        </p>
+
+    <div class="d-flex justify-content-center gap-3 flex-wrap">
+        <a href="{% url 'aircraft_list' %}" class="btn btn-primary btn-lg">
+            Browse Aircraft
+        </a>
+        <a href="{% url 'role_list' %}" class="btn btn-outline-primary btn-lg">
+            Browse Roles
+        </a>
+    </div>
+    </section>
+
+{% endblock %}

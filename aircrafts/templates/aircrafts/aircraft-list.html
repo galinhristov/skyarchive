@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Aircraft - SkyArchive{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>All Aircraft</h1>
+        <a href="{% url 'aircraft_create' %}" class="btn btn-primary">Add Aircraft</a>
+    </div>
+
+    <div class="row g-4">
+        {% for aircraft in aircraft %}
+            <div class="col-md-6 col-lg-4">
+                <div class="card card-custom h-100">
+                    <img src="{{ aircraft.image_url }}" class="card-img-top" alt="{{ aircraft.name }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ aircraft.name }}</h5>
+                        <p class="card-text">
+                            <strong>Role: {{ aircraft.role }}</strong><br>
+                            <strong>First flight: {{ aircraft.first_flight_year }}</strong><br>
+                            <strong>Crew: </strong> {{ aircraft.crew }}
+                        </p>
+                        <a href="{% url 'aircraft_details' pk=aircraft.pk %}" class="btn btn-outline-light">Details</a>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No aircraft have been added yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

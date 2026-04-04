@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Aircraft - SkyArchive{% endblock %}
+
+{% block content %}
+    <div class="card card-custom p-4">
+        <h1>Edit {{ aircraft.name }}</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-warning">Save Changes</button>
+            <a href="{% url 'aircraft_details' pk=aircraft.pk %}" class="btn btn-outline-light">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

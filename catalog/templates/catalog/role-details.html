@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}{{ role.name }} - SkyArchive{% endblock %}
+
+{% block content %}
+    <div class="card card-custom p-4">
+        <h1>{{ role.name }}</h1>
+        <p class="mt-3">{{ role.description }}</p>
+
+        <hr>
+
+        <h3>Aircraft in this role</h3>
+        <ul>
+            {% for aircraft in role.aircraft.all %}
+                <li>
+                    <a class="text-light" href="{% url 'aircraft_details' pk=aircraft.pk %}">
+                        {{ aircraft.name }}
+                    </a>
+                </li>
+            {% empty %}
+                <li>No aircraft are assigned to this role yet.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="mt-4 d-flex gap-2">
+            <a href="{% url 'role_edit' role.pk %}" class="btn btn-warning">Edit</a>
+            <a href="{% url 'role_delete' role.pk %}" class="btn btn-danger">Delete</a>
+            <a href="{% url 'role_list' %}" class="btn btn-outline-light">Back</a>
+        </div>
+    </div>
+{% endblock %}

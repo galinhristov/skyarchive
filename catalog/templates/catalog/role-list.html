@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block title %}Roles - SkyArchive{% endblock %}
+
+{% block content %}
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1>All Roles</h1>
+        <a href="{% url 'role_create' %}" class="btn btn-primary">Add Role</a>
+    </div>
+    <div class="row g-4">
+        {% for role in roles %}
+            <div class="col-md-6">
+                <div class="card card-custom h-100">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ role.name }}</h5>
+                        <p class="card-text">{{ role.description }}</p>
+                        <a href="{% url 'role_details' pk=role.pk %}" class="btn btn-outline-light">Details</a>
+                    </div>
+
+                </div>
+            </div>
+        {% empty %}
+            <p>No roles have been added yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
