@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Manufacturers - SkyArchive{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Manufacturers</h1>
+    <div class="row g-4">
+        {% for manufacturer in manufacturers %}
+            <div class="col-md-6">
+                <div class="card card-custom h-100">
+                    <div class="card-body">
+                        <h4>{{ manufacturer.name }}</h4>
+                        <p>
+                            <strong>Countries:</strong>
+                            {% for country in manufacturer.countries.all %}
+                                {{ country.name }}{% if not forloop.last %}, {% endif %}
+                            {% empty %}
+                                No countries listed.
+                            {% endfor %}
+                        </p>
+                        <p>
+                            {{ manufacturer.description|default:'No description available.' }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No manufacturers have been added yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Countries - SkyArchive{% endblock %}
+
+{% block content %}
+    <h1 class="mb-4">Countries</h1>
+
+    <div class="row g-4">
+        {% for country in countries %}
+            <div class="col-md-4">
+                <div class="card card-custom h-100">
+                    <div class="card-body">
+                        <h4>{{ country.name }}</h4>
+                        <p><strong>Code:</strong> {{ country.code|default:'N/A' }}</p>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+            <p>No countries have been added yet.</p>
+        {% endfor %}
+    </div>
+{% endblock %}

@@ -1,7 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
-
 from catalog.forms import RoleCreateForm, RoleEditForm, RoleDeleteForm
-from catalog.models import Role
+from catalog.models import Role, Manufacturer, Country
 
 
 def role_list(request):
@@ -64,3 +63,18 @@ def role_delete(request, pk):
     }
     return render(request, 'catalog/role-delete.html', context)
 
+
+def manufacturer_list(request):
+    manufacturers = Manufacturer.objects.all().prefetch_related('countries')
+    context = {
+        'manufacturers': manufacturers,
+    }
+    return render(request, 'catalog/manufacturer-list.html', context)
+
+def country_list(request):
+    countries = Country.objects.all()
+
+    context = {
+        'countries': countries,
+    }
+    return render(request, 'catalog/country-list.html', context)
