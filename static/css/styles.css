@@ -1,0 +1,35 @@
+body {
+    background-color: #0f172a;
+    color: #e5e7eb;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+.navbar {
+    background-color: #111827;
+}
+
+.footer-custom {
+    background-color: #111827;
+    color: #9ca3af;
+}
+
+.card-custom {
+    background-color: #1f2937;
+    color: #e5e7eb;
+    border: 1px solid #374151;
+}
+
+a {
+    text-decoration: none;
+}
+
+.badge-feature {
+    background-color: #2563eb;
+}
+
